@@ -1,0 +1,584 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*column-flex */
+html, body { height: 100%; }
+body { 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; 
+}
+.header { flex: 1 0 auto; 
+}
+.header{
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("customer\ 1.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+nav {
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.menu-toggle{ display: none; }
+.nav-link{
+    flex: 1;
+    text-align: right;
+}
+.nav-link ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+.nav-link ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+.nav-link ul li::after{
+     content:'';
+    display: block;
+    width:0%;
+    height: 2px;
+    margin: auto;
+    background:aqua;
+    transition: 0.5s;
+}
+.nav-link ul li:hover::after{
+    width: 100%;
+}
+.text-box{
+    width: 90%;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.text-box h1{
+    font-size: 62px;
+}
+.text-box p{
+    margin: 10px 0 40px;
+    font-size: 20px;
+    color: #fff;
+}
+.heroe-btn{
+    display: inline-block;
+    background: aqua;
+    color: #000;
+    padding: 12px 36px;
+    font-size: 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.5s;
+}
+.heroe-btn:hover{
+    background: #2ec1ac;
+    color: #000;
+}
+          nav .fa{
+            display: none;
+
+          }
+     
+@media (max-width: 700px){
+    .text-box h1{ font-size: 28px; }
+
+    /* show a hamburger toggle */
+    .menu-toggle{ display: inline-block; background: none; border: 0; color: aqua; font-size: 26px; cursor: pointer; }
+
+    /* Make the nav a slide-out panel */
+    .nav-link{
+        position: fixed;
+        background: aqua;
+        height: 100vh;
+        width: 220px;
+        top: 0;
+        right: -220px; /* hidden by default */
+        text-align: left;
+        z-index: 1200;
+        transition: right 0.28s ease;
+        padding-top: 48px;
+    }
+    .nav-link.open{ right: 0; 
+    }
+
+    .nav-link ul{
+        display: block; 
+        padding: 10px 18px; }
+    .nav-link ul li{ 
+        display: block; 
+        padding: 12px 0; 
+    }
+
+    /* position the toggle over the header */
+    nav { position: relative; 
+    }
+    .menu-toggle{ 
+        position: absolute; 
+        right: 18px; 
+        top: 18px; 
+        z-index: 1300; 
+    }
+}
+
+/* small-screen close button inside the slide-out menu */
+.nav-link .menu-close{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: none;
+    border: 0;
+    font-size: 20px;
+    color: #222;
+    cursor: pointer;
+}
+.nav-link .menu-close i{ color: #222; }
+
+/* Basic modal styles so it is hidden by default and appears centered */
+.modal{
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.6);
+}
+.modal-content{
+    background: #fff;
+    margin: 8% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 480px;
+    position: relative;
+    color: #000;
+}
+
+.modal .close{
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+}
+
+/*-----profile picture on the left--*/
+.profile{
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    margin-left: 5%;
+}
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid aqua;
+    transition: transform 0.5s;
+}
+.profile img:hover{
+    transform: scale(1.1);
+
+}
+  .logo{
+       color: aqua;
+       font-size: 35px;
+       font-weight: bold;
+       font-family: Arial;
+       float: left;
+       padding-left: 20px;
+       padding-top: 10px;
+  } 
+     
+@media (max-width: 600px){
+    .profile img{
+        width: 60px;
+        height: 60px;
+    }
+    .logo{
+        font-size: 25px;
+        padding-left: 5px;
+        padding-top: 5px;
+    }
+}
+/* Styles for anchored modal variant */
+.modal.anchored{
+    position: absolute;
+    display: none;
+    background: transparent; 
+    width: auto;
+    height: auto;
+    z-index: 2000;
+}
+.modal.anchored .modal-content{
+    margin: 0;
+    padding: 12px 16px;
+    width: auto;
+    max-width: 320px;
+    background: #fff;
+    color: #000;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+.modal.anchored .close{
+    color: #666;
+    font-size: 20px;
+    top: 6px;
+    right: 8px;
+}
+
+/* Footer styles */
+.site-footer{
+    background: aqua;
+    color: #000;
+    padding: 18px 0;
+    text-align: center;
+}
+.site-footer a{ 
+    color: #000; 
+    text-decoration: none; 
+}
+.site-footer a:hover{
+     text-decoration: underline;
+}
+
+/*-----About Section----*/
+.section{
+    width: 100%;
+    min-height: 100vh;
+    background: #f2f2f2;
+
+
+}
+.container{
+    width: 80%;
+    display: block;
+    margin: auto;
+    padding-top: 80px;
+}
+.content-section{
+    float: left;
+    width: 55%;
+}
+.image-section{
+    float: right;
+    width: 30%;
+}
+.image-section img{
+    width: 100%;
+    height: 500px;
+    border: 2px solid aqua;
+    border-radius: 15px;
+
+}
+ .title{
+    font-size: 28px;
+    
+}
+.title h2{
+    color:#000;
+    margin-top: 10px;
+}
+.content-section .content h3{
+    margin-top: 20px;
+    color: #5d5d5d;
+    font-size: 21px;
+}
+.content-section .content p{
+    background: #fff;
+    margin-top: 10px;
+    font-family: sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    border-radius: 20px;
+    padding: 5px 10px;
+
+    
+}
+.content-section .content p:hover{
+    background: aqua;
+}
+/*----projects----*/
+
+.project{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    
+} 
+.project h3{
+    margin-bottom: 10px;
+    color: #000;
+    font-size: 24px;
+}
+.project table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.project table, th, td{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.project :hover{
+    background: aqua;
+    transition: 0.3s;
+}
+/*-----Skills Section----*/
+.skill{
+    background: #fff;
+  padding: 1.25rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  margin-bottom: 10px;
+}
+.skill h3{
+    margin-bottom: 10px;
+    color: #000;
+    font-size: 24px;
+}
+.skill ul {
+    list-style: square;
+    font-size: 15px;
+    margin-left: 10px;
+    text-align: left;
+
+}
+.skill ul li{
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+.skill ul li:hover{
+    color: aqua;
+}
+.button{
+    margin-top: 30px;
+
+}
+
+.button a{
+    background: aqua;
+    padding: 12px 40px;
+    text-decoration: none;
+    color: #000;
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    border: 2px solid aqua;
+    border-radius: 20px;
+
+}
+.button a:hover{
+    background: plum;
+    color: #000;
+}
+.social{
+    margin-top: 40px;
+
+}
+.social i{
+    color: #a52a2a;
+    font-size: 30px;
+    padding: 8px 10px;
+
+}
+.social i:hover{
+    color:#3d3d3d;
+}
+/*-----Responsive----*/
+@media screen and ( max-width:760px){
+    .container{
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+    .content-section, .image-section{
+        float: none;
+        width: 100%;
+    }
+    .image-section img{
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+        border: 2px solid var(---accent, aqua);
+        border-radius: 15px;
+    }
+    .content-section.title h2{
+        font-size: 24px;
+    }
+    .title h2{
+        margin-bottom: 0px;
+    }
+}
+header .contact-form {
+    background: aqua;
+    margin: 2% 15%;
+    padding: 10px 20px;
+    border-radius: 15px;
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+header .contact-form img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+}
+header .contact-form div h1{
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+header .contact-form p{
+    font-size: 18px;
+    color: #000;
+}
+@media screen and ( max-width:760px){
+    header .contact-form {
+    background: aqua;
+    margin-top: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 10px 20px;
+    border-radius: 15px;
+    width: 90%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+}
+/*------form----*/
+.form-container{
+    max-width: 720px;
+    margin: 24px auto;
+    padding: 22px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+.form-container h1{
+    text-align: center;
+    color: #fff;
+    font-size: px;
+    margin-bottom: 12px;
+}
+
+form .form-row{
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+}
+
+form .form-row .field{
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    font-size: 14px;
+    margin-bottom: 6px;
+    margin-top: 16px;
+    color: #111;
+    font-weight: 600;
+}
+
+input[type="text"], input[type="email"], select, textarea{
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background:transparent;
+    color: #fff;
+    transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+input::placeholder, textarea::placeholder{
+    color: #9b9b9b;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+    border-color: aqua;
+    box-shadow: 0 8px 20px rgba(46,193,172,0.12);
+}
+
+textarea{ 
+    min-height: 120px;
+     resize: vertical; 
+     
+}
+
+input[type=submit], .btn{
+    display: inline-block;
+    background: aqua;
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 2px solid aqua;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+input[type=submit]:hover, .btn:hover{
+    background: #2ec1ac;
+}
+
+.form-note{ 
+    font-size: 13px; 
+    color: #666; 
+    margin-top: 8px;
+ }
+ .social-links{
+    margin-top: 20px;
+    text-align: center;
+ }
+ .social-links a{
+    justify-content: space-between;
+ }
+ .social-links i{
+    color: #a52a2a;
+    font-size: 34px;
+    padding: 8px 14px;
+ }
+    .social-links i:hover{
+        color:#3d3d3d;
+    }
+
+@media screen and (max-width: 760px){
+    .form-row{ flex-direction: column; }
+    .form-container{ 
+        padding: 16px; 
+        margin: 18px 12px;
+     }
+    input[type="text"], input[type="email"], select, textarea{ 
+        font-size: 15px;
+     }
+}
